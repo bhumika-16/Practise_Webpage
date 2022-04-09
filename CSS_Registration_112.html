@@ -1,0 +1,219 @@
+<!--Name - Bhumika Jindal
+	Roll No. - 13000117112
+	Assignment - 4(c)
+	Registration form in HTML implemented by CSS style -->
+	
+<html>
+<head>
+<title>Registration Form</title>
+<style>
+	.adm-form {
+	  display: flex;
+	  margin: auto;
+	  justify-content: center;
+	  align-items: center;
+	  width: 600px;
+	  color: rgb(255, 255, 255);
+	  font-size: 18px;
+	  font-family: sans-serif;
+	  background-color: tomato;
+	  padding: 20px;
+	}
+
+	.adm-form input,
+	.adm-form select,
+	.adm-form textarea {
+	  border: none;
+	  padding: 5px;
+	  margin-top: 10px;
+	  font-family: sans-serif;
+	  background-color: lightcyan;
+	}
+
+	.adm-form input:focus,
+	.adm-form textarea:focus {
+	  box-shadow: 3px 3px 10px rgb(248, 195, 164), -3px -3px 10px rgb(248, 195, 164);
+	}
+
+	.adm-form .submit {
+	  width: 100%;
+	  padding: 8px 0;
+	  font-size: 20px;
+	  color: rgb(44, 44, 44);	  
+	  border-radius: 5px;
+	}
+
+	.adm-form .submit:hover {
+	  box-shadow: 3px 3px 6px rgb(255, 214, 176);
+	}
+</style>
+
+<script type="text/javascript">
+	// function for form varification
+	function validate() {
+	
+	  // Select all input elements for varification
+	  const name = document.getElementById("name");
+	  const address = document.getElementById("address");
+	  const zipcode = document.getElementById("zipcode");
+	  const email = document.getElementById("email");
+	  const password = document.getElementById("password");
+	  const rpassword = document.getElementById("rpassword");
+	  const phoneNumber = document.getElementById("phoneNumber");
+	  const gender = document.registration;
+	  const birthday = document.getElementById("birthday");
+	  const branch = document.getElementById("branch");
+	  var language = document.getElementsByName("language");;
+	  	
+	  // checking name length
+	  if (name.value.length < 2 || name.value.length > 20) {
+		alert("Name length should be more than 2 and less than 21");
+		name.focus();
+		return false;
+	  }
+	  // checking address
+	  if (address.value==""||address.value==null) {
+		alert("Please enter a valid address!");
+		name.focus();
+		return false;
+	  }
+	  // checking zip code
+	  if (!zipcode.value.match(/^[0-9]{6}$/)) {
+		alert("Zip code must be 6 characters long number!");
+		zipcode.focus();
+		return false;
+	  }
+	  // checking email
+	  var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;	  
+	  if (!email.value.match(mailformat)) {
+		alert("Please enter a valid email!");
+		email.focus();
+		return false;
+	  }
+	  // checking password
+	  if (!password.value.match(/^.{5,15}$/)) {
+		alert("Password length must be between 5-15 characters!");
+		password.focus();
+		return false;
+	  }
+	  // checking password
+	  if (!(password.value==rpassword.value)) {
+		alert("Retyped password should be same as above!");
+		rpassword.focus();
+		return false;
+	  }
+	  // checking phone number
+	  if (!phoneNumber.value.match(/^[1-9][0-9]{9}$/)) {
+		alert("Phone number must be 10 characters long number and first digit can't be 0!");
+		phoneNumber.focus();
+		return false;
+	  }
+	  // checking gender
+	  if (gender.gender.value === "") {
+		alert("Please select your gender!");
+		return false;
+	  }
+	  // checking gender
+	  if (birthday.value == "") {
+		alert("Please select your birth date!");
+		return false;
+	  }
+	  // checking language
+	  if (branch.value === "") {
+		alert("Please select your stream!")
+		return false;
+	  }	  
+	  var b = 0;
+	  for(j=0;j<language.length;j++) {
+		if(language.item(j).checked == false) {
+			b++;
+		}
+	  }
+	  if(b == language.length) {
+		alert("Please select atleast one language!");
+		return false;
+	  } 
+	  return true;
+	}
+</script>
+
+<form name="registration" class="adm-form" action="" method="post" onsubmit="return validate()">
+  <table>
+    <tr>
+      <td><label for="name">Name:</label></td>
+      <td><input type="text" name="name" id="name" placeholder="Your name"></td>
+    </tr>
+	<tr>
+      <td><label for="address">Address:</label></td>
+      <td><input type="text" name="address" id="address" placeholder="Permanent Address"></td>
+    </tr>
+	<tr>
+      <td><label for="zipcode">Zip Code:</label></td>
+      <td><input type="number" name="zipcode" id="zipcode" placeholder="Postal Code"></td>
+    </tr>
+    <tr>
+      <td><label for="email">Email:</label></td>
+      <td><input type="text" name="email" id="email" placeholder="Your email"></td>
+    </tr>
+    <tr>
+      <td><label for="password">Password:</label></td>
+      <td><input type="password" name="password" id="password" placeholder="Atleast 5 characters..."></td>
+    </tr>
+	<tr>
+      <td><label for="rpassword">Retype Password:</label></td>
+      <td><input type="password" name="rpassword" id="rpassword" placeholder="Same as Above..."></td>
+    </tr>
+    <tr>
+      <td><label for="phoneNumber">Phone Number:</label></td>
+      <td><input type="number" name="phoneNumber" id="phoneNumber"></td>
+    </tr>
+    <tr>
+      <td><label for="gender">Gender:</label></td>
+      <td><input type="radio" name="gender" value="male">Male
+		  <input type="radio" name="gender" value="female">Female
+          <input type="radio" name="gender" value="other">Other</td>
+    </tr>
+	<tr>
+		<td><label for="birthday">Date of Birth:</label></td>
+		<td><input type="date" id="birthday" name="birthday"></td>
+	</tr>
+    <tr>
+      <td><label for="branch">Choose your stream:</label></td>
+      <td>
+        <select id="branch" name="branch">
+			<option value=''>Select Department</option>
+			<option value="cse">Computer Science and Engineering</option>
+			<option value="it">Internet Technology</option>
+			<option value="ece">Electronic and Communication Engineering</option>
+			<option value="ee">Electrical Engineering</option>
+			<option value="ce">Civil Engineering</option>
+			<option value="me">Mechanical Engineering</option>
+			<option value="ft">Food Technology</option>
+		</select>
+      </td>
+    </tr>
+	<tr>		
+		<td><label for="language">Coding Language Known:</label></td>
+		<td>
+		  <span id="language">
+			<input type="checkbox" name="language" value="Java">Java			
+			<input type="checkbox" name="language" value="C">C			
+			<input type="checkbox" name="language" value="Cpp">C++
+			<input type="checkbox" name="language" value="Python">Python			
+			<input type="checkbox" name="language" value="Other">Other			
+		  </span>
+		</td>		
+	</tr>
+    <tr>
+      <td><label for="about">About:</label></td>
+      <td><textarea name="about" id="about" placeholder="Write about yourself..."></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="submit" class="submit" value="Submit Form" /></td>	  
+    </tr>
+  </table>
+</form>
+</head>
+<body style="background-color:teal;"> 
+</body>
+</html>
